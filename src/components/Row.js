@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import Youtube from "react-youtube";
 import movieTrailer from "movie-trailer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Row.css";
 const base_url = "https://image.tmdb.org/t/p/original";
+toast.configure();
 function Row({ title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
     const [trailerUrl, setTrailerUrl] = useState("");
@@ -24,7 +27,12 @@ function Row({ title, fetchUrl, isLargeRow }) {
             autoplay: 1,
         },
     };
-
+    const handleError = (error) => {
+        toast.error(
+            "Sorry for inconvenience. Trailer for this movie is not present now. We will update it soon",
+        );
+        // alert("Sorry for inconvenience. The error is " + error);
+    };
     const handleClick = (movie) => {
         if (trailerUrl) {
             setTrailerUrl("");
@@ -34,7 +42,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
                     const urlParams = new URLSearchParams(new URL(url).search);
                     setTrailerUrl(urlParams.get("v"));
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => {
+                    handleError(error);
+                });
         }
     };
     return (
