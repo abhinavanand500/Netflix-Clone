@@ -28,7 +28,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
         },
     };
     const handleError = (error) => {
-        toast.error(
+        toast.error (
             "Sorry for inconvenience. Trailer for this movie is not present now. We will update it soon",
         );
         // alert("Sorry for inconvenience. The error is " + error);
