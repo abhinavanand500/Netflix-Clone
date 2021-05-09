@@ -4,7 +4,7 @@
 
 ## Introduction
 
-NETFLIX is a Entertainment Website where people can watch Movies. I have developed a clone of NETFLIX where people can check latest movies and their ratings. This website is developed using ReactJS.
+NETFLIX is a Entertainment Website where people can watch Movies. I have developed a clone of NETFLIX where people can check latest movies and their trailers. This website is developed using ReactJS.
 
 API used: https://api.themoviedb.org/
 
