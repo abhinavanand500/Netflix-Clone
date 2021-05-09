@@ -1,30 +1,41 @@
 import React from "react";
-import Row from "./components/Row";
 import "./App.css";
-import Nav from "./components/Nav";
-import Banner from "./components/Banner";
-import requests from "./api/request";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import HomeScreen from "./components/HomeScreen";
 function App() {
     return (
         <div className='App'>
-            {/* <h1>NetFlix Clone Created By Abhinav Anand 🚀 </h1> */}
-            <Nav />
-            <Banner />
-            <Row
-                title='NETFLIX ORIGINAL'
-                fetchUrl={requests.fetchNetflixOriginal}
-                isLargeRow
-            />
-            <Row title='Trending Now' fetchUrl={requests.fetchTrending} />
-            <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />
-            <Row title='Action Movies' fetchUrl={requests.fetchActionMovies} />
-            <Row
-                title='Romantic Movies'
-                fetchUrl={requests.fetchRomanceMovies}
-            />
-            <Row title='Horror Movies' fetchUrl={requests.fetchHorrorMovies} />
-            <Row title='Comedy Movies' fetchUrl={requests.fetchComedyMovies} />
-            <Row title='Documentaries' fetchUrl={requests.fetchDocumentaries} />
+            {/* Created By Abhinav Anand 🚀 */}
+            <HomeScreen />
+            <Router>
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to='/'>Home</Link>
+                            </li>
+                            <li>
+                                <Link to='/about'>About</Link>
+                            </li>
+                            <li>
+                                <Link to='/users'>Users</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <Switch>
+                        <Route path='/about'>
+                            <About />
+                        </Route>
+                        <Route path='/users'>
+                            <Users />
+                        </Route>
+                        <Route path='/'>
+                            <Home />
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
         </div>
     );
 }
